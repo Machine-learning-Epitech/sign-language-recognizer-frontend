@@ -7,6 +7,7 @@ interface Props {
 export const UploadPicture: React.FC<Props> = ({ onChangeImage }) => {
   const [images, setImages] = useState<ImageListType>([]);
   const handleChange = (imagesList: ImageListType) => {
+    console.log('Change');
     if (imagesList[0]?.file) {
       setImages(imagesList);
       onChangeImage(imagesList[0].file);
@@ -47,7 +48,13 @@ export const UploadPicture: React.FC<Props> = ({ onChangeImage }) => {
             )}
             {!!imageList.length && (
               <CardActions>
-                <Button onClick={() => onImageRemove(0)}>Try another</Button>
+                <Button
+                  onClick={() => {
+                    onImageRemove(0);
+                    setImages([]);
+                  }}>
+                  Try another
+                </Button>
               </CardActions>
             )}
           </Card>

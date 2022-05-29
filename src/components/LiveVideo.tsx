@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, Switch } from '@mui/material';
+import { Box, Button, Card, CardActions, Stack, Switch, Typography } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 
@@ -75,12 +75,17 @@ export const LiveVideo: React.FC<Props> = ({ onChangeImage }) => {
         />
       )}
       <CardActions>
-        {image ? (
-          <Button onClick={handleRetake}>Retake</Button>
-        ) : (
-          <Button onClick={capture}>Screenshot</Button>
-        )}
-        <Switch value={videoMode} onChange={() => setVideoMode(!videoMode)} />
+        <Stack flexDirection="row" alignItems="center" justifyContent="space-between" width="100%">
+          {image ? (
+            <Button onClick={handleRetake}>Retake</Button>
+          ) : (
+            <Button onClick={capture}>Screenshot</Button>
+          )}
+          <Stack flexDirection="row" alignItems="center" justifyContent="space-between">
+            <Typography fontSize="15px">VIDEO</Typography>
+            <Switch value={videoMode} onChange={() => setVideoMode(!videoMode)} />
+          </Stack>
+        </Stack>
       </CardActions>
     </Card>
   );
